@@ -1,0 +1,135 @@
+{% include 'index.html' %}
+
+<body>
+    {% if env == 'dev' %}
+        <div class="row">
+            <div class="col-11 mx-auto">
+                <form id="carousel" role="form" method="POST" enctype="multipart/form-data" action="">
+                    <div class="panel panel-default" style="box-shadow: 5px 10px 8px silver; border-radius: 0px; border: 1px solid silver">
+                        <div class="panel-body">
+                            <br>
+                            <div class="row">
+                                <div class="col-pull-9 mx-auto">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Carousel File: </label>
+                                        <input type="file" class="form-control-file" name="inputFile" id="inputFile" required="true">
+                                        <small class="form-text text-muted">Update the carousel pics with new JSON file!</small>
+                                    </div>
+                                </div>
+                                <div class="col-push-3 mx-auto">
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary" id="addToDevBtn" value="Update dev!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                        
+                                        <br><br>
+
+                                        <input type="submit" class="btn btn-danger" id="addToProdBtn" value="Update prod!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br>
+    {% endif %}
+
+    <!-- Page Header -->
+    <header style="width: 100%">
+        <div class="container-fluid">
+            <div class="row">
+                {% include 'includeFiles/carousel.html' %}
+            </div>
+        </div>
+    </header>
+
+    <br><br>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <div id='posts'>
+                    {% include 'includeFiles/posts.html' %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 mx-auto"> 
+                <!-- Pager -->
+                <div class="clearfix">
+                    {% if nextIndex >= numPosts %}
+                        <a id='nextIndex' class="btn btn float-right" value='{{ nextIndex }}' style="display: none; color: rgb(192, 192, 250)">More Posts &rarr;</a>
+                    {% else %}
+                        <a id='nextIndex' class="btn btn float-right" value='{{ nextIndex }}' style="color: rgb(192, 192, 250)">More Posts &rarr;</a>
+                    {% endif %}
+                    <a id='prevIndex' class="btn btn float-left" value='{{ prevIndex }}' style="display: none; color: rgb(192, 192, 250)">&larr; Previous Posts</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-12 mx-auto" style="background-color: #f6f6f6; border-top: 1px solid silver; border-bottom: 1px solid silver">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <a href="https://www.instagram.com/loisapalcu/" style="text-align: right; color: rgb(192, 192, 250)">
+                        <h3>
+                            @loisapalcu
+                        </h3>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <div id="instagramFeed">
+                        {% include 'includeFiles/instagramFeed.html' %}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <h3 style="text-align: left; color: rgb(192, 192, 250)">
+                        <a href="https://www.instagram.com/loisapalcu/">
+                            &larr; View More 
+                        </a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Pager -->
+        <!-- <div class="clearfix"> -->
+        <div class="col-12 mx-auto" style="background-color: #f6f6f6; border-top: 1px solid silver; border-bottom: 1px solid silver">
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <h3 style="color: rgb(192, 192, 250)">My Vlogs!</h3>
+                </div>
+            </div>
+            <br>
+            <div id="youtubeFeed">
+                {% include 'includeFiles/youtubeFeed.html' %}
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <h3 style="text-align: right; color: rgb(192, 192, 250)">
+                        <a href="https://www.youtube.com/user/palcu08">
+                            View More &rarr;
+                        </a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Footer -->
+    {% include 'includeFiles/footer.html' %}
+
+</body>
+
+<script src="{{ url_for('static', filename='js/loisa-site/home.js') }}"></script>
+<script src="{{ url_for('static', filename='js/loisa-site/index.js') }}"></script>

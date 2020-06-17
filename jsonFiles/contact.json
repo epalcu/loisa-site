@@ -1,0 +1,16 @@
+{
+    "title": {
+        "content": "Contact Me",
+        "align": "center"
+    },
+    "subTitle": {
+        "content": "Have questions? I have so many answers!"
+    },
+    "backgroundImage": {
+        "path": "https://s3.amazonaws.com/loisa-website/dev/img/freestocks-org-794156-unsplash.jpg"
+    },
+    "section": {
+        "content": "Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!",
+        "align": "left"
+    }
+}

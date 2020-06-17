@@ -1,0 +1,54 @@
+<div id="demo" class="carousel slide" data-ride="carousel" style="height: 80vh;">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        {% for i in range(slides|length) %}
+            {% if i == 0 %}
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+            {% else %}
+                <li data-target="#demo" data-slide-to="{{ i|string }}"></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    
+    <!-- The slideshow -->
+    <div class="carousel-inner" style="border-bottom: 1px solid rgb(192, 192, 250)">
+        {% for slide in range(slides|length) %}
+            {% if slide == 0 %}
+                <div class="carousel-item active">
+            {% else %}
+                <div class="carousel-item">
+            {% endif %}
+                    <img src="{{ slides[slide]['image'] }}" style="width: 100%; height: 80vh; opacity: {{ slides[slide]['opacity'] }}">
+                    <div class="carousel-caption" style="color: {{ slides[slide]['color'] }}">
+                        <!-- <i class="fa fa-home fa-4x"></i> -->
+                        <!-- <br><br> -->
+                        {% if 'post' in slides[slide] %}
+                            <a id="carouselPost" href="#" value="{{ slides[slide]['post'] }}">
+                                <h1>
+                                    <strong>
+                                        {{ slides[slide]['title'] }}
+                                    </strong>
+                                </h1>
+                            </a>
+                        {% else %}
+                            <h1>
+                                <strong>
+                                    {{ slides[slide]['title'] }}
+                                </strong>
+                            </h1>
+                        {% endif %}
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+    
+</div>

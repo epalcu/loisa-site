@@ -1,0 +1,119 @@
+{% include "index.html" %}
+
+<body>
+  {% if env == 'dev' %}
+    <div class="row">
+        <div class="col-11 mx-auto">
+            <form id="contact" role="form" method="POST" enctype="multipart/form-data" action="">
+                <div class="panel panel-default" style="box-shadow: 5px 10px 8px silver; border-radius: 0px; border: 1px solid silver">
+                    <div class="panel-body">
+                        <br>
+                        <div class="row">
+                            <div class="col-pull-9 mx-auto">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Contact File: </label>
+                                    <input type="file" class="form-control-file" name="inputFile" id="inputFile" required="true">
+                                    <small class="form-text text-muted">Update 'contact' page with new JSON file!</small>
+                                </div>
+                            </div>
+                            <div class="col-push-3 mx-auto">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" id="addToDevBtn" value="Update dev!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                    
+                                    <br><br>
+
+                                    <input type="submit" class="btn btn-danger" id="addToProdBtn" value="Update prod!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+  {% endif %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="height: 80vh; background-image: url({{ contact['backgroundImage']['path'] }})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-10 mx-auto">
+          <div class="page-heading">
+              <i class="fa fa-user-circle fa-3x"></i>
+              <br>
+              <h1 style="text-align: {{ contact['title']['align'] }};
+                         color: {{ contact['title']['color'] }};">
+                {{ contact['title']['content'] }}
+              </h1>
+            <span class="subheading" style="text-align: {{ contact['subTitle']['align'] }};
+                                            color: {{ contact['subTitle']['color'] }};">
+              {{ contact['subTitle']['content'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-10 mx-auto">
+        <p style="text-align: {{ contact['section']['align'] }}">
+            {{ contact['section']['content'] }}
+        </p>
+        <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+        <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+        <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+        <form id="contactForm" action="" method="POST" role="form">
+          <div class="control-group" id="divName"> 
+            <div class="form-group floating-label-form-group controls">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Name" id="name" required>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group" id="divEmail">
+            <div class="form-group floating-label-form-group controls">
+              <label>Email Address</label>
+              <input type="email" class="form-control" placeholder="Email Address" id="email" required>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group" id="divMessage">
+            <div class="form-group floating-label-form-group controls">
+              <label>Message</label>
+              <textarea rows="3" class="form-control" placeholder="Message" id="message" required></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div class="form-check" id="divEmailSubscription">
+            <input class="form-check-input" type="checkbox" id="emailSubscription" value="option1">
+            <label class="form-check-label" for="emailSubscription">Subscribe to e-mail list!</label>
+          </div>
+          <br>
+          <div id="messageStatus" style="visibility: hidden">
+              <div class="alert alert-success">
+                <i class="fa fa-check fa-fw"></i> 
+              </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn float-left" id="sendMessageButton" style="padding-left: 0; color: rgb(192, 192, 250); background-color: #fff;">Send!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Footer -->
+  {% include 'includeFiles/footer.html' %}
+
+</body>
+
+<script src="{{ url_for('static', filename='js/loisa-site/contact.js') }}"></script>

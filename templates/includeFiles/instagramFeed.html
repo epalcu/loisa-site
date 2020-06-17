@@ -1,0 +1,19 @@
+<div class="row">
+    {% for post in posts %}
+        <div class="col-3" style="height: 80%; padding: 1%; opacity: 0.85">
+            <div class="zoom">    
+                <div class="hovereffect">
+                    <img class="rounded-circle" src="{{ post }}" style="margin-bottom: 15%; padding: 2%; width: 90%; box-shadow: 5px 5px 8px silver; background-color: rgba(158, 206, 116, 0.659);">
+                    <div class="overlay" style="height: 85%; padding: 2%; width: 90%;">
+                        <p>
+                            <br><br>
+                            <a class="info" href="https://www.instagram.com/loisapalcu/">
+                                <i class="fab fa-instagram fa-stack-2x"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

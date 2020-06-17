@@ -1,0 +1,5 @@
+Flask==0.12.2
+Jinja2==2.10
+zappa==0.47.1
+boto3==1.9.54
+Flask-Mail==0.9.1

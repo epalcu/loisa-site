@@ -1,0 +1,114 @@
+{% include "index.html" %}
+
+<body>
+  {% if env == 'dev' %}
+    <div class="row">
+        <div class="col-11 mx-auto">
+            <form id="about" role="form" method="POST" enctype="multipart/form-data" action="">
+                <div class="panel panel-default" style="box-shadow: 5px 10px 8px silver; border-radius: 0px; border: 1px solid silver">
+                    <div class="panel-body">
+                        <br>
+                        <div class="row">
+                            <div class="col-pull-9 mx-auto">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">About File: </label>
+                                    <input type="file" class="form-control-file" name="inputFile" id="inputFile" required="true">
+                                    <small class="form-text text-muted">Update 'about' page with new JSON file!</small>
+                                </div>
+                            </div>
+                            <div class="col-push-3 mx-auto">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" id="addToDevBtn" value="Update dev!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                    
+                                    <br><br>
+
+                                    <input type="submit" class="btn btn-danger" id="addToProdBtn" value="Update prod!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+  {% endif %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="height: 80vh; background-image: url({{ about['backgroundImage']['path'] }})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-10 mx-auto">
+          <div class="page-heading">
+              <i class="fa fa-user-circle fa-3x"></i>
+              <br>
+              <h1 style="text-align: {{ about['title']['align'] }};
+                         color: {{ about['title']['color'] }};">
+                {{ about['title']['content'] }}
+              </h1>
+            <span class="subheading" style="text-align: {{ about['subTitle']['align'] }};
+                                            color: {{ about['subTitle']['color'] }};">
+              {{ about['subTitle']['content'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+      {% for section in about['sections'] %}
+      <div class="row">
+        <div class="col-10 mx-auto">
+          {% if 'sectionImage' in section %}
+            {% for image in section['sectionImage']['beforeTitle'] %}
+              <img class="img-fluid" src="{{ image['path'] }}" alt="" width="{{ image[width] }}">
+              <br><br>
+            {% endfor %}
+          {% endif %}
+
+          {% if 'sectionTitle' in section %}
+            <br>
+
+            <h3 style="text-align: {{ section['sectionTitle']['align'] }};
+                       color: {{ section['sectionTitle']['color'] }};">
+              {{ section['sectionTitle']['content'] }}
+            </h3>
+
+            <br>
+          {% endif %}
+
+          {% if 'sectionImage' in section %}
+            {% for image in section['sectionImage']['beforeContent'] %}
+              <img class="img-fluid" src="{{ image['path'] }}" alt="" width="{{ image[width] }}">
+              <br><br>
+            {% endfor %}
+          {% endif %}
+
+          <div style="text-align: {{ section['section']['align'] }};
+                      color: {{ section['section']['color'] }};">
+            {{ section['section']['content'] }}
+          </div>
+
+          {% if 'sectionImage' in section %}
+            {% for image in section['sectionImage']['afterContent'] %}
+              <br>
+              <img class="img-fluid" src="{{ image['path'] }}" alt="" width="{{ image[width] }}">
+              <br>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <br>
+    {% endfor %}
+  </div>
+
+  <br>
+
+  <!-- Footer -->
+  {% include 'includeFiles/footer.html' %}
+
+</body>

@@ -1,0 +1,86 @@
+{% include "index.html" %}
+
+<body>
+    {% if env == 'dev' %}
+        <div class="row">
+            <div class="col-11 mx-auto">
+                <form id="blogPost" role="form" method="POST" enctype="multipart/form-data" action="">
+                    <div class="panel panel-default" style="box-shadow: 5px 10px 8px silver; border-radius: 0px; border: 1px solid silver">
+                        <div class="panel-body">
+                            <br>
+                            <div class="row">
+                                <div class="col-pull-9 mx-auto">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Blog Post File: </label>
+                                        <input type="file" class="form-control-file" name="inputFile" id="inputFile" required="true">
+                                        <small class="form-text text-muted">Add a blog post from a new JSON file!</small>
+                                    </div>
+                                </div>
+                                <div class="col-push-3 mx-auto">
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary" id="addToDevBtn" value="Add to dev!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                        
+                                        <br><br>
+
+                                        <input type="submit" class="btn btn-danger" id="addToProdBtn" value="Add to prod!" style="box-shadow: 2px 5px 4px #888888; border-radius: 0px; width: 100%"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br>
+    {% endif %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="height: 80vh; background-image: url('static/img/home-bg.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading" style="color: rgb(192, 192, 250)">
+                <i class="fa fa-edit fa-3x"></i>
+                <br>
+                <h1>My Posts!</h1>
+                <!-- <span class="subheading">Hey, everyone!</span> -->
+            </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 mx-auto">
+                <div id='posts'>
+                    {% include 'includeFiles/posts.html' %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 mx-auto"> 
+                <!-- Pager -->
+                <div class="clearfix">
+                    {% if nextIndex >= numPosts %}
+                        <a id='nextIndex' class="btn btn float-right" value='{{ nextIndex }}' style="display: none; color: rgb(192, 192, 250)">More Posts &rarr;</a>
+                    {% else %}
+                        <a id='nextIndex' class="btn btn float-right" value='{{ nextIndex }}' style="color: rgb(192, 192, 250)">More Posts &rarr;</a>
+                    {% endif %}
+                    <a id='prevIndex' class="btn btn float-left" value='{{ prevIndex }}' style="display: none; color: rgb(192, 192, 250)">&larr; Previous Posts</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Footer -->
+    {% include 'includeFiles/footer.html' %}
+
+</body>
+
+<script src="{{ url_for('static', filename='js/loisa-site/index.js') }}"></script>

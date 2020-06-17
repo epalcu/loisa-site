@@ -1,0 +1,74 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url({{ post['backgroundImage']['path'] }})">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-10 mx-auto">
+          <div class="post-heading">
+            <h1 style="text-align: {{ post['title']['align'] }};
+                      color: {{ post['title']['color'] }};">
+              {{ post['title']['content'] }}
+            </h1>
+            <h2 class="subheading" style="text-align: {{ post['subTitle']['align'] }};
+                                          color: {{ post['subTitle']['color'] }};">
+                {{ post['subTitle']['content'] }}
+            </h2>
+            <span class="meta" style="text-align: {{ post['date']['align'] }};
+                                      color: {{ post['date']['color'] }};">
+              Posted on {{ post['date']['content'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+      {% for section in post['sections'] %}
+        <div class="row">
+          <div class="col-10 mx-auto">
+            {% if 'sectionImage' in section %}
+              {% for image in section['sectionImage']['beforeTitle'] %}
+                <img class="img-fluid" src="{{ image['path'] }}" alt="" width="{{ image[width] }}">
+                <br><br>
+              {% endfor %}
+            {% endif %}
+
+            {% if 'sectionTitle' in section %}
+              <br>
+
+              <h3 class="section-heading" style="text-align: {{ section['sectionTitle']['align'] }};
+                         color: {{ section['sectionTitle']['color'] }};">
+                {{ section['sectionTitle']['content'] }}
+              </h3>
+
+              <br>
+            {% endif %}
+
+            {% if 'sectionImage' in section %}
+              {% for image in section['sectionImage']['beforeContent'] %}
+                <img class="img-fluid" src="{{ image['path'] }}" alt="" width="{{ image[width] }}">
+                <br><br>
+              {% endfor %}
+            {% endif %}
+
+            <div style="text-align: {{ section['section']['align'] }};
+                        color: {{ section['section']['color'] }};">
+              {{ section['section']['content'] }}
+            </div>
+
+            {% if 'sectionImage' in section %}
+              {% for image in section['sectionImage']['afterContent'] %}
+                <br>
+                <img class="img-fluid" src="{{ image['path'] }}" alt="" width="{{ image[width] }}">
+                <br>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        <br>
+      {% endfor %}
+    </div>
+</article>

@@ -1,0 +1,66 @@
+{% for p in range(posts|length) %}
+    <a id='post' href="#" value="{{ posts[p] }}">
+        <!-- <div class="zoom"> -->
+            {% if 'displayImage' in posts[p] %}
+                <div class="row">
+                    {% if posts[p]['displayImage']['align'] == "left" %}
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <img style="opacity: {{ posts[p]['displayImage']['opacity'] }}; box-shadow: 5px 5px 8px silver" class="{{ posts[p]['displayImage']['type'] }}" src="{{ posts[p]['displayImage']['path'] }}">
+                            {% if env == 'dev' %}
+                                <small>File Name: "{{ titles[p] }}"</small>
+                            {% endif %}
+                        </div>
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 pull-right">
+                            <div class="post-preview">
+                                <h2 class="post-title" style="text-align: right;">
+                                    {{ posts[p]['title']['content'] }}
+                                </h2>
+                                <h3 class="post-subtitle" style="text-align: right; color: rgba(158, 206, 116, 0.659)">
+                                    {{ posts[p]['subTitle']['content'] }}
+                                </h3>
+                                <p class="post-meta" style="text-align: right; color: silver">
+                                    Posted on {{ posts[p]['date']['content'] }}
+                                </p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                            <div class="post-preview">
+                                <h2 class="post-title">
+                                    {{ posts[p]['title']['content'] }}
+                                </h2>
+                                <h3 class="post-subtitle" style="color: rgba(158, 206, 116, 0.659)">
+                                    {{ posts[p]['subTitle']['content'] }}
+                                </h3>
+                                <p class="post-meta" style="color: silver">
+                                    Posted on {{ posts[p]['date']['content'] }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <img style="opacity: {{ posts[p]['displayImage']['opacity'] }}; box-shadow: 5px 5px 8px silver" class="{{ posts[p]['displayImage']['type'] }}" src="{{ posts[p]['displayImage']['path'] }}">
+                            {% if env == 'dev' %}
+                                <small>File Name: "{{ titles[p] }}"</small>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    <div class="post-preview">
+                        <h2 class="post-title">
+                            {{ posts[p]['title']['content'] }}
+                        </h2>
+                        <h3 class="post-subtitle" style="color: rgba(158, 206, 116, 0.659)">
+                            {{ posts[p]['subTitle']['content'] }}
+                        </h3>
+                        <p class="post-meta" style="color: silver">
+                            Posted on {{ posts[p]['date']['content'] }}
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        <!-- </div> -->
+    </a>
+    <hr style="border-top: 1px solid rgb(192, 192, 250)">
+{% endfor %}

@@ -1,0 +1,40 @@
+[
+    {
+        "image": "https://s3.amazonaws.com/loisa-website/dev/img/freestocks-org-1124997-unsplash.jpg",
+        "title": "Ellias Palcu",
+        "color": "rgb(136, 136, 255)",
+        "opacity": "0.75"
+    },
+    {
+        "image": "https://s3.amazonaws.com/loisa-website/dev/img/freestocks-org-1124997-unsplash.jpg",
+        "title": "Nutrition",
+        "color": "gold",
+        "post": "random3.json",
+        "opacity": "0.75"
+    },
+    {
+        "image": "https://s3.amazonaws.com/loisa-website/dev/img/eberhard-grossgasteiger-1254752-unsplash.jpg",
+        "title": "Wellness",
+        "opacity": "0.75"
+    },
+    {
+        "image": "https://s3.amazonaws.com/loisa-website/dev/img/freestocks-org-794156-unsplash.jpg",
+        "title": "Mental Health",
+        "color": "black",
+        "post": "exploration.json",
+        "opacity": "0.75"
+    },
+    {
+        "image": "https://s3.amazonaws.com/loisa-website/dev/img/freestocks-org-662335-unsplash.jpg",
+        "title": "Loisa Palcu",
+        "color": "rgb(136, 136, 255)",
+        "opacity": "0.75"
+    },
+    {
+        "image": "https://s3.amazonaws.com/loisa-website/dev/img/eberhard-grossgasteiger-1254752-unsplash.jpg",
+        "title": "Nutrition",
+        "color": "gold",
+        "post": "random2.json",
+        "opacity": "0.75"
+    }
+]
