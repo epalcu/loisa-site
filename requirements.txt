@@ -1,4 +1,4 @@
-Flask==0.12.2
+Flask==1.0
 Jinja2==2.10
 zappa==0.47.1
 boto3==1.9.54
