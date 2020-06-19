@@ -11,7 +11,7 @@ Click==7.0
 decorator==4.0.11
 docutils==0.14
 durationpy==0.5
-Flask==0.12.2
+Flask==1.0
 Flask-Classful==0.15.0.dev0
 Flask-Mail==0.9.1
 Flask-RESTful==0.3.8
