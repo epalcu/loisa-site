@@ -2,8 +2,11 @@ from flask import Blueprint, make_response, redirect, url_for, render_template
 from flask_classful import FlaskView, route
 
 class homeController(FlaskView):
+    #
+    # Constructor
+    #
     def __init__(self, dict):
-        self.s3 = dict['s3Client']
+        self.s3Service = dict['s3Service']
         self.environment = dict['env']
         self.postsPerPage = dict['postsPerPage']
 
@@ -21,9 +24,9 @@ class homeController(FlaskView):
     #########################################################
     @route('/home')
     def home(self):
-        posts, length = self.s3.getPosts(self.postsPerPage['/home'], 0)
+        posts, length = self.s3Service.getPosts(self.postsPerPage['/home'], 0)
 
-        carouselSlides = self.s3.getCarousel()
+        carouselSlides = self.s3Service.getCarousel()
         
         return make_response(render_template(
             'home.html', 

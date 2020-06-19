@@ -2,24 +2,32 @@ import json
 from flask import Flask
 
 class appConfigService():
-    def __init__(self, app, client):
+    #
+    # Constructor
+    #
+    def __init__(self, app, service):
         self.app = app
-        self.client = client
+        self.secretsManagerService = service
 
-    def configureApp(self):
-        creds = json.loads(self.client.get_secret_value(
-            SecretId='loisaWebsiteEmailCreds'
-        )['SecretString'])
+    #
+    # Public Methods
+    #
+    def configureApp(self, env):
+        with open('./configs/{0}.json'.format(env)) as json_file: 
+            config = json.load(json_file) 
+        
+        creds = self.secretsManagerService.getSecretValue(config['SECRETS_MANAGER_SECRET_ID'])
 
-        self.app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-        self.app.config['MAIL_PORT'] = 465
+        self.app.config['MAIL_SERVER'] = config['MAIL_SERVER']
+        self.app.config['MAIL_PORT'] = config['MAIL_PORT']
         self.app.config['MAIL_USERNAME'] = creds['username']
         self.app.config['MAIL_PASSWORD'] = creds['password']
-        self.app.config['MAIL_USE_TLS'] = False
-        self.app.config['MAIL_USE_SSL'] = True
-        self.app.config['ENVIRONMENT'] = 'prod'
-        self.app.config['HOME_POSTS_PER_PAGE'] = 3
-        self.app.config['MYPOSTS_POSTS_PER_PAGE'] = 5
-        self.app.secret_key = 'something'
+        self.app.config['MAIL_USE_TLS'] = config['MAIL_USE_TLS']
+        self.app.config['MAIL_USE_SSL'] = config['MAIL_USE_SSL']
+        self.app.config['ENVIRONMENT'] = config['ENVIRONMENT']
+        self.app.config['HOME_POSTS_PER_PAGE'] = config['HOME_POSTS_PER_PAGE']
+        self.app.config['MYPOSTS_POSTS_PER_PAGE'] = config['MYPOSTS_POSTS_PER_PAGE']
+        self.app.config['S3_BUCKET'] = config['S3_BUCKET']
+        self.app.secret_key = config['APP_SECRET_KEY']
 
         return self.app

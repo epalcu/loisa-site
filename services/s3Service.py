@@ -1,13 +1,14 @@
 import json
 import glob
 import ast
+import boto3
 
-class s3Utils():
+class s3Service():
     #
     # Constructor
     #
     def __init__(self, dict):
-        self.client = dict['s3']
+        self.client = boto3.client('s3')
         self.bucket = dict['bucket']
         self.env = dict['env']
 

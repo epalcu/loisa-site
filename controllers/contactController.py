@@ -1,12 +1,17 @@
 from flask import Blueprint, make_response, redirect, url_for, render_template
 from flask_classful import FlaskView, route
+from flask_mail import Message
 
 class contactController(FlaskView):
+    #
+    # Constructor
+    #
     def __init__(self, dict):
-        self.s3 = dict['s3Client']
+        self.s3Service = dict['s3Service']
         self.environment = dict['env']
         self.postsPerPage = dict['postsPerPage']
         self.mail = dict['mailClient']
+
 
     ######################################################
     # '/contact' - Contact page responsible for allowing # 
@@ -18,9 +23,10 @@ class contactController(FlaskView):
     def contact(self):
         return make_response(render_template(
             'contact.html',
-            contact=self.s3.getContact(),
+            contact=self.s3Service.getContact(),
             env=self.environment
         ), 200)
+
 
     #########################################################
     # '/contact/message' - contactMessage route responsible # 
@@ -31,6 +37,7 @@ class contactController(FlaskView):
     #########################################################
     @route('/contact/message', methods=['POST'])
     def contactMessage(self):
+        # TODO: Make this into a class as opposed to a dictionary
         name = request.json['name']
         email = request.json['email']
         message = request.json['message']

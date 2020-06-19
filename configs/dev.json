@@ -1,0 +1,12 @@
+{
+    "MAIL_SERVER": "smtp.gmail.com",
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS": false,
+    "MAIL_USE_SSL": true,
+    "ENVIRONMENT": "dev",
+    "HOME_POSTS_PER_PAGE": 3,
+    "MYPOSTS_POSTS_PER_PAGE": 5,
+    "APP_SECRET_KEY": "something",
+    "S3_BUCKET": "loisa-website",
+    "SECRETS_MANAGER_SECRET_ID": "loisaWebsiteEmailCreds"
+}

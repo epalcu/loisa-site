@@ -2,8 +2,11 @@ from flask import Blueprint, make_response, redirect, url_for, render_template, 
 from flask_classful import FlaskView, route
 
 class aboutController(FlaskView):
+    #
+    # Constructor
+    #
     def __init__(self, dict):
-        self.s3 = dict['s3Client']
+        self.s3Service = dict['s3Service']
         self.environment = dict['env']
         self.postsPerPage = dict['postsPerPage']
 
@@ -18,6 +21,6 @@ class aboutController(FlaskView):
     def about(self):
         return make_response(render_template(
             'about.html',
-            about=self.s3.getAbout(),
+            about=self.s3Service.getAbout(),
             env=self.environment
         ), 200)

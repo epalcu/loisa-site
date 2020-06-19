@@ -4,10 +4,14 @@ from flask import Blueprint, make_response, redirect, url_for, render_template, 
 from flask_classful import FlaskView, route
 
 class postsController(FlaskView):
+    #
+    # Constructor
+    #
     def __init__(self, dict):
-        self.s3 = dict['s3Client']
+        self.s3Service = dict['s3Service']
         self.environment = dict['env']
         self.postsPerPage = dict['postsPerPage']
+
 
     ###########################################################
     # '/post' - Page responsible for displaying user-selected # 
@@ -30,7 +34,7 @@ class postsController(FlaskView):
     #####################################################
     @route('/myPosts', methods=['GET'])
     def myPosts(self):
-        posts, length = self.s3.getPosts(self.postsPerPage['/myPosts'], 0)
+        posts, length = self.s3Service.getPosts(self.postsPerPage['/myPosts'], 0)
 
         return make_response(render_template(
             'myPosts.html', 
@@ -39,6 +43,7 @@ class postsController(FlaskView):
             prevIndex=0,
             numPosts=length
         ), 200)
+
 
     ###########################################################
     # '/post/next' - Route responsible for reading in and     #
@@ -51,7 +56,7 @@ class postsController(FlaskView):
         nextIndex = int(request.json['nextIndex'])
         source = request.json['source']
         
-        posts, length = self.s3.getPosts(nextIndex+self.postsPerPage[source], nextIndex)
+        posts, length = self.s3Service.getPosts(nextIndex+self.postsPerPage[source], nextIndex)
         
         posts = render_template('includeFiles/posts.html', posts=posts)
         
@@ -74,7 +79,7 @@ class postsController(FlaskView):
         prevIndex = int(request.json['prevIndex'])
         source = request.json['source']
         
-        posts, length = self.s3.getPosts(prevIndex, prevIndex-self.postsPerPage[source])
+        posts, length = self.s3Service.getPosts(prevIndex, prevIndex-self.postsPerPage[source])
         
         posts = render_template('includeFiles/posts.html', posts=posts)
         
